@@ -1,291 +1,480 @@
+:root {
+    --red-prime: #DA291C; /* Merah bendera */
+    --white-prime: #FFFFFF; /* Putih bendera */
+    --dark-bg: #1a1a2e; /* Background gelap untuk kontras */
+    --light-text: #e0e0e0;
+    --card-bg: rgba(255, 255, 255, 0.1); /* Latar belakang kartu transparan */
+    --border-color: rgba(255, 255, 255, 0.3);
+    --hover-effect: rgba(255, 255, 255, 0.2);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
     margin: 0;
-    padding: 20px;
-    color: #333;
-    overflow-x: auto; /* Memungkinkan scroll horizontal jika bagan terlalu lebar */
-}
-
-h1 {
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-.main-bracket-wrapper {
-    width: 100%;
-    max-width: 1400px; /* Batasi lebar maksimal bagan */
-    overflow-x: auto; /* Memungkinkan scrolling horizontal jika layar kecil */
-    padding-bottom: 20px; /* Ruang untuk scrollbar */
-}
-
-.bracket-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Jarak antar ronde */
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    min-width: fit-content; /* Memastikan container tidak menyusut terlalu kecil */
-}
-
-.round {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 200px; /* Lebar minimum untuk setiap ronde */
-}
-
-.round h2 {
-    color: #34495e;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-    border-bottom: 3px solid #e74c3c;
-    padding-bottom: 5px;
-}
-
-.round-matches {
-    display: flex;
-    flex-direction: column;
-    gap: 40px; /* Jarak antar match-group */
-}
-
-.match-group {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Jarak antar pertandingan dalam satu grup */
+    padding: 0;
+    background: linear-gradient(135deg, var(--dark-bg), #0f0f1d);
+    color: var(--light-text);
+    line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
     position: relative;
 }
 
-.match {
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #bdc3c7;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1; /* Pastikan match di atas garis */
-}
-
-.match.winner-highlight {
-    background-color: #d4edda; /* Warna hijau muda */
-    border-color: #28a745;
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.2);
-}
-
-.team {
-    font-weight: 600;
-    color: #2c3e50;
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease;
-}
-
-.team.winner {
-    background-color: #2ecc71;
-    color: white;
-    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.4);
-}
-
-.score {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #e74c3c;
-    margin: 5px 0;
-}
-
-.match-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.match-actions button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.match-actions button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-.match-actions button:active {
-    transform: translateY(0);
-}
-
-.match-actions button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-/* Garis koneksi antar pertandingan (gunakan pseudo-elemen atau elemen div kosong) */
-.match::after {
-    content: '';
-    position: absolute;
-    right: -25px; /* Jarak ke kanan untuk garis horizontal */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25px;
-    height: 2px;
-    background-color: #95a5a6;
-    z-index: 0;
-}
-
-/* Garis vertikal antar match-group dan garis horizontal ke ronde berikutnya */
-.round-matches > .match-group::before {
-    content: '';
-    position: absolute;
-    left: calc(100% + 5px); /* Posisi garis vertikal di sebelah kanan match-group */
-    width: 2px;
-    background-color: #95a5a6;
-    z-index: 0;
-}
-
-.round-matches > .match-group:first-child::before {
-    top: 50%;
-    height: calc(50% + 20px); /* Setengah dari tinggi match-group + jarak antar match */
-    border-top-right-radius: 5px;
-}
-
-.round-matches > .match-group:last-child::before {
-    bottom: 50%;
-    height: calc(50% + 20px);
-    border-bottom-right-radius: 5px;
-}
-
-/* Garis horizontal dari match-group ke match berikutnya di ronde selanjutnya */
-.round-matches > .match-group:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: calc(100% + 5px);
-    top: calc(50% + 20px); /* Posisi di tengah antara dua match-group */
-    width: 25px; /* Panjang garis horizontal */
-    height: 2px;
-    background-color: #95a5a6;
-    z-index: 0;
-}
-
-/* Penyesuaian untuk ronde terakhir (final) */
-#round4 .match::after {
-    content: none; /* Hapus garis ke kanan setelah final */
-}
-
-/* Juara */
-#champion-round {
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.champion-display {
-    background-color: #f39c12;
-    color: white;
-    font-size: 2em;
-    font-weight: 700;
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
-    text-align: center;
-    min-width: 200px;
-    transition: all 0.5s ease;
-}
-
-/* Confetti Effect */
-.confetti-container {
+/* Confetti Container */
+#confetti-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    overflow: hidden;
+    pointer-events: none; /* Agar tidak menghalangi interaksi */
     z-index: 9999;
+    overflow: hidden; /* Pastikan confetti tidak keluar dari batas */
 }
 
 .confetti {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #f00; /* Default color */
+    background-color: var(--red-prime);
     opacity: 0;
-    animation: fall 3s forwards;
-    border-radius: 50%; /* Membuat confetti bulat */
+    animation: fall 3s forwards ease-out;
+    border-radius: 50%; /* Untuk bentuk bulat */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.confetti:nth-child(even) {
+    background-color: var(--white-prime);
 }
 
 @keyframes fall {
     0% {
-        transform: translateY(-100px) rotateZ(0deg);
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotateZ(720deg);
+        transform: translateY(100vh) rotate(720deg);
         opacity: 0;
     }
 }
 
-/* Responsiveness */
+
+.header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(45deg, var(--red-prime), #ff5a5a);
+    color: var(--white-prime);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden; /* Agar confetti tidak keluar saat animasi di header */
+}
+
+.header h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.schedule-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.match-day {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); /* Efek blur pada background */
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.match-day:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.match-day h2 {
+    text-align: center;
+    color: var(--white-prime);
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.match-day h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--red-prime), var(--white-prime));
+    border-radius: 2px;
+}
+
+.match-card {
+    display: flex;
+    flex-wrap: wrap; /* Izinkan wrap untuk elemen skor dan info */
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.match-card:hover {
+    background-color: var(--hover-effect);
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Gaya Baru untuk Match Number --- */
+.match-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--dark-bg);
+    color: var(--white-prime);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.team {
+    font-size: 1.8em;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.team-red {
+    background-color: var(--red-prime);
+    color: var(--white-prime);
+}
+
+.team-white {
+    background-color: var(--white-prime);
+    color: var(--red-prime);
+}
+
+.vs {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--white-prime);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Gaya Baru untuk Skor --- */
+.match-score {
+    flex-basis: 100%; /* Agar skor berada di baris baru */
+    text-align: center;
+    margin: 15px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--white-prime);
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Jarak antar set score */
+    padding: 10px 0;
+    border-top: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.set-score {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 5px;
+    min-width: 60px; /* Ukuran minimum untuk konsistensi */
+}
+
+.set-score:nth-child(odd) {
+    color: var(--red-prime); /* Warna merah untuk set ganjil (opsional) */
+    background-color: rgba(var(--red-prime), 0.2);
+}
+.set-score:nth-child(even) {
+    color: var(--white-prime); /* Warna putih untuk set genap (opsional) */
+    background-color: rgba(var(--white-prime), 0.2);
+}
+
+/* --- Akhir Gaya Baru untuk Skor --- */
+
+
+.match-info {
+    text-align: center;
+    flex-basis: 100%; /* Agar info di bawah tim */
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: var(--light-text);
+    opacity: 0.9;
+}
+
+.match-info .time,
+.match-info .venue {
+    font-weight: 500;
+}
+
+/* --- Gaya Khusus untuk Final Card --- */
+.final-match {
+    background: linear-gradient(to right, var(--red-prime), var(--white-prime));
+    color: var(--dark-bg);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--white-prime), 0 0 20px var(--red-prime), 0 0 30px var(--red-prime);
+    border: 2px solid var(--white-prime);
+    position: relative;
+    z-index: 1; /* Pastikan di atas sparkle */
+    /* Animasi pulse border */
+    animation: pulse-border 2s infinite ease-in-out;
+    margin-bottom: 50px;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px var(--white-prime), 0 0 20px var(--red-prime), 0 0 30px var(--red-prime);
+    }
+    50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 20px var(--white-prime), 0 0 30px var(--red-prime), 0 0 40px var(--red-prime);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px var(--white-prime), 0 0 20px var(--red-prime), 0 0 30px var(--red-prime);
+    }
+}
+
+.final-match .team-red {
+    background-color: var(--dark-bg);
+    color: var(--red-prime);
+}
+
+.final-match .team-white {
+    background-color: var(--dark-bg);
+    color: var(--white-prime);
+}
+
+.final-match .vs,
+.final-match .match-info {
+    color: var(--dark-bg);
+    text-shadow: none;
+}
+
+.final-match .match-score {
+    color: var(--dark-bg); /* Ubah warna skor di final match */
+    border-top: 1px dashed var(--dark-bg);
+    border-bottom: 1px dashed var(--dark-bg);
+}
+
+.final-match .set-score {
+    background-color: rgba(0, 0, 0, 0.1); /* Latar belakang skor di final match */
+}
+.final-match .set-score:nth-child(odd) {
+    color: var(--red-prime);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.final-match .set-score:nth-child(even) {
+    color: var(--white-prime);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.final-match .match-number {
+    background-color: var(--dark-bg);
+    color: var(--white-prime);
+}
+
+/* Gaya baru untuk sparkle */
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: var(--white-prime);
+    border-radius: 50%;
+    opacity: 0;
+    animation: fade-and-move 1.5s forwards ease-out;
+}
+@keyframes fade-and-move {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+/* --- Akhir Gaya Khusus Final Card --- */
+
+/* Gaya untuk Rule Book */
+.rule-book-content p, .rule-book-content li {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+.rule-book-content ol {
+    padding-left: 20px;
+}
+.rule-book-link {
+    display: inline-block;
+    background-color: var(--red-prime);
+    color: var(--white-prime);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.rule-book-link:hover {
+    background-color: #a82015;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .bracket-container {
+    .header h1 {
+        font-size: 2.5em;
+    }
+
+    .match-day h2 {
+        font-size: 2em;
+    }
+
+    .match-card {
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        padding: 20px;
+        padding-top: 40px;
     }
 
-    .round {
-        width: 90%;
-        max-width: 400px;
+    .match-number {
+        top: 15px;
+        font-size: 0.8em;
     }
 
-    .round-matches {
-        gap: 20px;
+    .team {
         width: 100%;
+        margin: 5px 0;
+        font-size: 1.2em; /* Disesuaikan */
+        padding: 6px 8px; /* Disesuaikan */
     }
 
-    .match-group {
-        width: 100%;
+    .vs {
+        margin: 5px 0;
+        font-size: 1.2em;
     }
 
-    .match::after,
-    .round-matches > .match-group::before,
-    .round-matches > .match-group:not(:last-child)::after {
-        content: none; /* Hapus garis koneksi pada tampilan mobile */
+    .match-score {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 5px;
+        margin: 8px 0; /* Disesuaikan */
     }
 
-    h1 {
+    .set-score {
+        width: auto;
+        min-width: 40px;
+        font-size: 0.9em;
+        padding: 3px 8px;
+    }
+
+    .match-info {
+        margin-top: 8px; /* Disesuaikan */
+        font-size: 0.9em;
+    }
+    .final-match {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
         font-size: 1.8em;
     }
 
-    .round h2 {
-        font-size: 1.5em;
+    .header p {
+        font-size: 1.2em;
     }
 
-    .champion-display {
-        font-size: 1.5em;
-        padding: 15px 25px;
+    .match-day h2 {
+        font-size: 1.2em;
+    }
+
+    .match-card {
+        padding: 8px; /* Disesuaikan */
+        padding-top: 35px; /* Disesuaikan */
+    }
+
+    .match-number {
+        top: 10px;
+        font-size: 0.75em;
+        padding: 4px 8px;
+    }
+
+    .team {
+        font-size: 1em;
+        padding: 2px;
+    }
+
+    .vs {
+        font-size: 1em; /* Disesuaikan */
+    }
+    .match-score {
+        font-size: 1em; /* Disesuaikan */
+    }
+    .set-score {
+        min-width: 30px;
+    }
+    .match-info {
+        font-size: 0.75em; /* Disesuaikan */
+    }
+
+    .final-match {
+        margin-bottom: 40px;
+    }
+    .rule-book-content {
+        font-size: 0.75em;
+    }
+    footer {
+        font-size: 0.75em;
     }
 }
