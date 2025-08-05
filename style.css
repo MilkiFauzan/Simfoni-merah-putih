@@ -235,7 +235,7 @@ footer {
 /* === Responsive Design === */
 @media (max-width: 768px) {
     .container {
-        padding: 3rem 1.5rem;
+        padding: 2rem 1rem;
     }
 
     .section-title {
@@ -243,7 +243,7 @@ footer {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Disesuaikan untuk layar mobile yang lebih kecil */
     }
 
     .hero-subtitle {
@@ -265,24 +265,34 @@ footer {
     }
 
     .time-box {
-        width: 70px;
+        width: 60px; /* Disesuaikan agar lebih kecil */
         padding: 0.5rem;
     }
 
     .time-box span {
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Disesuaikan agar tidak terlalu besar */
     }
 
     .time-box small {
         font-size: 0.7rem;
     }
 
-    #tentang p {
-        font-size: 0.9rem;
-        text-align: left; /* Justify seringkali sulit dibaca di HP */
+    .button-link {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .gallery-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .gallery-container img {
+        width: 100%;
+        flex: 1 1 auto;
     }
 
     .invitation-section p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 }
