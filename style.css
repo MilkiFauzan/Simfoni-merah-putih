@@ -239,11 +239,11 @@ footer {
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .hero-title {
-        font-size: 2.2rem; /* Disesuaikan untuk layar mobile yang lebih kecil */
+        font-size: 2rem; /* Disesuaikan untuk layar mobile yang lebih kecil */
     }
 
     .hero-subtitle {
@@ -278,8 +278,8 @@ footer {
     }
 
     .button-link {
-        padding: 10px 20px;
-        font-size: 1em;
+        padding: 8px 16px; /* Diperkecil lagi */
+        font-size: 0.9em; /* Diperkecil lagi */
     }
 
     .gallery-container {
@@ -294,5 +294,14 @@ footer {
 
     .invitation-section p {
         font-size: 0.95rem;
+    }
+}
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    .button-link {
+        padding: 6px 12px;
+        font-size: 0.8em;
     }
 }
