@@ -132,3 +132,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Modal Gambar
+const showImageBtn = document.getElementById("showImageBtn");
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeBtn = document.querySelector(".close");
+
+// Ganti link gambar sesuai kebutuhan
+const imageURL = "Bagan-turnamen-voli.png";
+
+showImageBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+  modalImg.src = imageURL;
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
