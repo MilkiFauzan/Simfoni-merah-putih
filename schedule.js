@@ -74,3 +74,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 500);
 });
+// --- Logika untuk menampilkan nama peserta saat hover ---
+document.addEventListener('DOMContentLoaded', function() {
+    // Data nama peserta untuk setiap tim
+    const teamRosters = {
+        "たこやき": ["Yudi", "Reza", "Istohari", "Aldi", "Rifki", "Ade", "Hendri"],
+        "すきやき": ["Reza", "Ferdi", "Rafi", "Lathif", "Damar", "Andriyan", "Wildan", "Dani"],
+        "さしみ": ["Sendi", "Saiful", "Jamal", "Rendi", "Syafiq", "Imam", "Farhan"],
+        "おにぎり": ["Alfin", "Alek", "Arya", "Nizar", "Ade", "Puji", "Yasin", "Febi", "Edi"],
+        "おやこどん": ["Arya", "Ponco", "Alamsyah", "Mahda", "Gammabiolie", "Bagas", "Prasya"],
+        "からあげ": ["Yunan", "Tawa", "Dede", "Aditya", "Kurniawan", "Rizki", "Aditya", "Apriyanto"],
+        "ハンバーグ": ["Fia", "Ika", "Malikha", "Hadi", "Nogi", "Indriani", "Bekti", "Pahmi"],
+        "おこのみやき": ["Oban", "Ajad", "Sohibin", "Ridho", "Bima", "Fadillah", "Windu"],
+        "うどん": ["Fikri", "Todi", "Ardi", "Yudha", "Marshel", "Rizal", "Putra", "Dzuhrianto"],
+        "ぎゅうどん": ["Saleh", "Husni", "Nizar", "Adin", "Agus", "Encep", "Fakih", "Faris"],
+        "ぎょうざ": ["Ramanda", "Grafi", "Yodi", "Hendrik", "Goga", "Yogi", "Rafli", "Aldi"],
+        "ラーメン": ["Dhidan", "Saepul", "Khusnul", "Dani", "Cahsono", "Yudistira", "Eka", "Fitrio"],
+        "てんぷら": ["Aldi", "Marcelino", "Iqbal", "Niko", "Kholil", "Alek", "Syamsul", "Fandi"],
+        "すし": ["Sugiarto", "Tiara", "Siva", "Adit", "Sindi", "Thoya", "Kaka", "Wisnu"],
+        "スタッフ": ["Wili Kojouchou", "Didi Buchou", "RCR Ridwan", "DMI Fajri", "CP Bayu", "Pembinaan Eggy", "Pembinaan Andika", "Pembinaan Milki"],
+        "わたり": ["Indri", "Caca", "Lina", "Desti", "Ellis", "Zahwa", "Susi"]
+    };
+
+    const teamElements = document.querySelectorAll('.team');
+
+    teamElements.forEach(teamElement => {
+        let tooltip; // Variabel untuk menyimpan elemen tooltip
+
+        teamElement.addEventListener('mouseenter', (event) => {
+            const teamName = teamElement.textContent.trim();
+            const roster = teamRosters[teamName];
+
+            if (roster) {
+                // Buat elemen tooltip
+                tooltip = document.createElement('div');
+                tooltip.classList.add('team-roster-tooltip');
+
+                // Buat daftar nama
+                const rosterList = roster.map(name => `<li>${name}</li>`).join('');
+                tooltip.innerHTML = `<h4>Tim ${teamName}</h4><ul>${rosterList}</ul>`;
+
+                // Atur posisi tooltip
+                const rect = event.target.getBoundingClientRect();
+                tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                tooltip.style.left = `${rect.left + window.scrollX}px`;
+
+                document.body.appendChild(tooltip);
+            }
+        });
+
+        teamElement.addEventListener('mouseleave', () => {
+            // Hapus tooltip saat kursor keluar
+            if (tooltip) {
+                tooltip.remove();
+                tooltip = null;
+            }
+        });
+    });
+});
