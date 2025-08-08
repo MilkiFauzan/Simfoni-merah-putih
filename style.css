@@ -1,8 +1,8 @@
-/* --- Konfigurasi Dasar & Variabel --- */
+
 :root {
-    --primary-color: #D62828; /* Merah Bendera */
-    --secondary-color: #003049; /* Biru Tua */
-    --accent-color: #F77F00; /* Oranye */
+    --primary-color: #D62828; 
+    --secondary-color: #003049; 
+    --accent-color: #F77F00; 
     --white-color: #FFFFFF;
     --dark-text: #333333;
     --light-bg: #F2F2F2;
@@ -56,7 +56,7 @@ body {
 .hero-content {
     max-width: 900px;
     padding: 2rem;
-    position: relative; /* Diperlukan untuk confetti */
+    position: relative; 
     z-index: 2;
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 .hero-description {
-    font-size: 1.1rem; /* Ukuran font disesuaikan */
+    font-size: 1.1rem; 
 }
 
 /* Key Info */
@@ -97,8 +97,8 @@ body {
 }
 .button-link {
     display: inline-block;
-    background-color: #FFD700; /* Warna kuning keemasan */
-    color: #A00000; /* Warna teks merah tua */
+    background-color: #FFD700; 
+    color: #A00000; 
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
@@ -122,7 +122,7 @@ body {
     gap: 1rem;
     margin-top: 2rem;
     text-shadow: none;
-    color: var(--white-color); /* Pastikan teks countdown berwarna putih */
+    color: var(--white-color); 
 }
 
 .time-box {
@@ -146,7 +146,7 @@ body {
 }
 
 /* --- Galeri Lomba --- */
-#lomba { /* Menggunakan huruf kecil 'lomba' agar konsisten */
+#lomba { 
     background-color: var(--light-bg);
 }
 
@@ -159,9 +159,9 @@ body {
 }
 
 .gallery-container img {
-    width: 30%; /* Biarkan flexbox yang mengatur lebar */
-    max-width: 350px; /* Lebar maksimum per gambar */
-    flex: 1 1 300px; /* Fleksibel, dasar 300px, bisa membesar */
+    width: 30%; 
+    max-width: 350px; 
+    flex: 1 1 300px; 
     height: auto;
     border-radius: 8px;   
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -198,7 +198,7 @@ footer {
     padding: 1rem;
 }
 
-/* --- Confetti (Jika digunakan) --- */
+/* --- Confetti --- */
 #confetti-container {
     position: absolute;
     top: 0;
@@ -243,7 +243,7 @@ footer {
     }
 
     .hero-title {
-        font-size: 2rem; /* Disesuaikan untuk layar mobile yang lebih kecil */
+        font-size: 2rem; 
     }
 
     .hero-subtitle {
@@ -265,12 +265,12 @@ footer {
     }
 
     .time-box {
-        width: 60px; /* Disesuaikan agar lebih kecil */
+        width: 60px; 
         padding: 0.5rem;
     }
 
     .time-box span {
-        font-size: 1.3rem; /* Disesuaikan agar tidak terlalu besar */
+        font-size: 1.3rem; 
     }
 
     .time-box small {
@@ -278,8 +278,8 @@ footer {
     }
 
     .button-link {
-        padding: 8px 16px; /* Diperkecil lagi */
-        font-size: 0.9em; /* Diperkecil lagi */
+        padding: 8px 16px; 
+        font-size: 0.9em;
     }
 
     .gallery-container {

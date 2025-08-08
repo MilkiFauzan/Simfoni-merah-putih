@@ -1,9 +1,9 @@
 :root {
-    --red-prime: #DA291C; /* Merah bendera */
-    --white-prime: #FFFFFF; /* Putih bendera */
-    --dark-bg: #1a1a2e; /* Background gelap untuk kontras */
+    --red-prime: #DA291C; 
+    --white-prime: #FFFFFF;
+    --dark-bg: #1a1a2e; 
     --light-text: #e0e0e0;
-    --card-bg: rgba(255, 255, 255, 0.1); /* Latar belakang kartu transparan */
+    --card-bg: rgba(255, 255, 255, 0.1); 
     --border-color: rgba(255, 255, 255, 0.3);
     --hover-effect: rgba(255, 255, 255, 0.2);
 }
@@ -15,7 +15,7 @@ body {
     background: linear-gradient(135deg, var(--dark-bg), #0f0f1d);
     color: var(--light-text);
     line-height: 1.6;
-    overflow-x: hidden; /* Mencegah scroll horizontal */
+    overflow-x: hidden; 
     position: relative;
 }
 .back-home-btn {
@@ -49,9 +49,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Agar tidak menghalangi interaksi */
+    pointer-events: none; 
     z-index: 9999;
-    overflow: hidden; /* Pastikan confetti tidak keluar dari batas */
+    overflow: hidden;
 }
 
 .confetti {
@@ -61,7 +61,7 @@ body {
     background-color: var(--red-prime);
     opacity: 0;
     animation: fall 3s forwards ease-out;
-    border-radius: 50%; /* Untuk bentuk bulat */
+    border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -94,7 +94,7 @@ body {
     border-bottom-right-radius: 50% 20px;
     margin-bottom: 40px;
     position: relative;
-    overflow: hidden; /* Agar confetti tidak keluar saat animasi di header */
+    overflow: hidden; 
 }
 
 .header h1 {
@@ -122,7 +122,7 @@ body {
     margin-bottom: 40px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px); /* Efek blur pada background */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -155,7 +155,7 @@ body {
 
 .match-card {
     display: flex;
-    flex-wrap: wrap; /* Izinkan wrap untuk elemen skor dan info */
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     background-color: var(--card-bg);
@@ -173,7 +173,7 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* --- Gaya Baru untuk Match Number --- */
+/* --- Match Number --- */
 .match-number {
     position: absolute;
     top: 10px;
@@ -217,9 +217,9 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Gaya Baru untuk Skor --- */
+/* --- Style Skor --- */
 .match-score {
-    flex-basis: 100%; /* Agar skor berada di baris baru */
+    flex-basis: 100%;
     text-align: center;
     margin: 15px 0;
     font-size: 1.3em;
@@ -227,7 +227,7 @@ body {
     color: var(--white-prime);
     display: flex;
     justify-content: center;
-    gap: 20px; /* Jarak antar set score */
+    gap: 20px;
     padding: 10px 0;
     border-top: 1px dashed var(--border-color);
     border-bottom: 1px dashed var(--border-color);
@@ -237,24 +237,24 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 5px 12px;
     border-radius: 5px;
-    min-width: 60px; /* Ukuran minimum untuk konsistensi */
+    min-width: 60px; 
 }
 
 .set-score:nth-child(odd) {
-    color: var(--red-prime); /* Warna merah untuk set ganjil (opsional) */
+    color: var(--red-prime); 
     background-color: rgba(var(--red-prime), 0.2);
 }
 .set-score:nth-child(even) {
-    color: var(--white-prime); /* Warna putih untuk set genap (opsional) */
+    color: var(--white-prime); 
     background-color: rgba(var(--white-prime), 0.2);
 }
 
-/* --- Akhir Gaya Baru untuk Skor --- */
+/* --- Skor --- */
 
 
 .match-info {
     text-align: center;
-    flex-basis: 100%; /* Agar info di bawah tim */
+    flex-basis: 100%;
     margin-top: 15px;
     font-size: 1.1em;
     color: var(--light-text);
@@ -266,7 +266,7 @@ body {
     font-weight: 500;
 }
 
-/* --- Gaya Khusus untuk Final Card --- */
+/* --- Final Card --- */
 .final-match {
     background: linear-gradient(to right, var(--red-prime), var(--white-prime));
     color: var(--dark-bg);
@@ -274,8 +274,7 @@ body {
     box-shadow: 0 0 10px var(--white-prime), 0 0 20px var(--red-prime), 0 0 30px var(--red-prime);
     border: 2px solid var(--white-prime);
     position: relative;
-    z-index: 1; /* Pastikan di atas sparkle */
-    /* Animasi pulse border */
+    z-index: 1; 
     animation: pulse-border 2s infinite ease-in-out;
     margin-bottom: 50px;
 }
@@ -312,13 +311,13 @@ body {
 }
 
 .final-match .match-score {
-    color: var(--dark-bg); /* Ubah warna skor di final match */
+    color: var(--dark-bg);
     border-top: 1px dashed var(--dark-bg);
     border-bottom: 1px dashed var(--dark-bg);
 }
 
 .final-match .set-score {
-    background-color: rgba(0, 0, 0, 0.1); /* Latar belakang skor di final match */
+    background-color: rgba(0, 0, 0, 0.1); 
 }
 .final-match .set-score:nth-child(odd) {
     color: var(--red-prime);
@@ -358,7 +357,7 @@ body {
         transform: scale(0);
     }
 }
-/* --- Akhir Gaya Khusus Final Card --- */
+/* --- Final Card --- */
 
 /* Gaya untuk Rule Book */
 .rule-book-content p, .rule-book-content li {
@@ -385,8 +384,8 @@ body {
     transform: translateY(-2px);
 }
 
-/* --- TAMBAHAN CSS UNTUK TOOLTIP YANG LEBIH MENARIK --- */
-/* Definisi animasi fade-in */
+/* --- TOOLTIP--- */
+/* Fade-in */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -398,14 +397,14 @@ body {
     }
 }
 
-/* Gaya dasar tooltip yang diperbarui */
+/* Tooltip new */
 .team-roster-tooltip {
     position: absolute;
     background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(40, 40, 60, 0.95));
     color: var(--light-text);
     border-radius: 10px;
     padding: 15px 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 10px var(--red-prime); /* Bayangan dengan efek glow */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 10px var(--red-prime); 
     z-index: 1000;
     pointer-events: none;
     font-size: 0.9em;
@@ -414,24 +413,24 @@ body {
     animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Elemen pseudo untuk membuat "panah" */
+/* Pseudo */
 .team-roster-tooltip::before {
     content: '';
     position: absolute;
-    top: -10px; /* Posisi di atas tooltip */
-    left: 20px; /* Atur posisi horizontal sesuai keinginan */
+    top: -10px; 
+    left: 20px; 
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid rgba(0, 0, 0, 0.95); /* Warna panah */
+    border-bottom: 10px solid rgba(0, 0, 0, 0.95);
 }
 
 .team-roster-tooltip h4 {
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.2em;
-    color: var(--red-prime); /* Judul dengan warna merah */
+    color: var(--red-prime); 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 5px;
@@ -484,7 +483,7 @@ body {
 button {
   padding: 12px 25px;
   font-size: 16px;
-  background-color: var(--dark-bg);
+  background-color: var(--red-prime);
   color: white;
   border: none;
   border-radius: 8px;
@@ -496,7 +495,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--red-prime);
+  background-color: var(--dark-bg);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
@@ -538,8 +537,8 @@ footer {
     .team {
         width: 100%;
         margin: 5px 0;
-        font-size: 1.2em; /* Disesuaikan */
-        padding: 6px 8px; /* Disesuaikan */
+        font-size: 1.2em; 
+        padding: 6px 8px; 
     }
 
     .vs {
@@ -551,7 +550,7 @@ footer {
         flex-direction: row;
         justify-content: space-around;
         gap: 5px;
-        margin: 8px 0; /* Disesuaikan */
+        margin: 8px 0; 
     }
 
     .set-score {
@@ -562,7 +561,7 @@ footer {
     }
 
     .match-info {
-        margin-top: 8px; /* Disesuaikan */
+        margin-top: 8px;
         font-size: 0.9em;
     }
     .final-match {
@@ -584,8 +583,8 @@ footer {
     }
 
     .match-card {
-        padding: 8px; /* Disesuaikan */
-        padding-top: 35px; /* Disesuaikan */
+        padding: 8px; 
+        padding-top: 35px; 
     }
 
     .match-number {
@@ -600,16 +599,16 @@ footer {
     }
 
     .vs {
-        font-size: 1em; /* Disesuaikan */
+        font-size: 1em; 
     }
     .match-score {
-        font-size: 1em; /* Disesuaikan */
+        font-size: 1em; 
     }
     .set-score {
         min-width: 30px;
     }
     .match-info {
-        font-size: 0.75em; /* Disesuaikan */
+        font-size: 0.75em; 
     }
 
     .final-match {
