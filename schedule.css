@@ -18,6 +18,57 @@ body {
     overflow-x: hidden; 
     position: relative;
 }
+
+/* --- Gaya baru untuk animasi pemenang --- */
+#winner-animation-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 10000;
+    background: linear-gradient(135deg, #FFD700, #DAA520);
+    border: 3px solid var(--white-prime);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.7);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    opacity: 0;
+    display: none; /* Sembunyikan secara default */
+}
+
+#winner-animation-container.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    display: block;
+}
+
+#winner-animation-container .trophy-icon {
+    font-size: 8em;
+    animation: rotate-trophy 2s infinite ease-in-out;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+#winner-animation-container #winner-title {
+    font-size: 2.5em;
+    margin: 10px 0 20px;
+    color: var(--dark-bg);
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+#winner-animation-container #winner-name {
+    color: var(--red-prime);
+    text-transform: uppercase;
+}
+
+@keyframes rotate-trophy {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg) scale(1.1); }
+    100% { transform: rotate(0deg); }
+}
+/* --- Akhir gaya baru untuk animasi pemenang --- */
+
 .back-home-btn {
     position: fixed;
     top: 20px;
